@@ -1,4 +1,8 @@
 import { DataSource } from "typeorm";
+import { Shop } from "./entities/Shop";
+import { Product } from "./entities/Product";
+import { Category } from "./entities/Category";
+import { Hotline } from "./entities/Hotline";
 
 
 const dataSource = new DataSource({
@@ -9,8 +13,9 @@ const dataSource = new DataSource({
     password: "",
     database: "mydb",
     synchronize: true,
+    dropSchema: true,
     logging: false,
-    entities: []
+    entities: [Shop, Product, Category, Hotline]
 })
 
 export default dataSource;
