@@ -36,11 +36,15 @@ export const getShopById = async (req: Request, res: Response, next: NextFunctio
     }
 };
 
-export const getAllShopsWithProducts = async (req: Request, res: Response, next: NextFunction) => {
+export const getAllShops = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const shops = await Shop.find({ relations: ["products"] });
-        res.json(shops);
+        const shops = await Shop.find();
+        res.status(200).json({
+            success: true,
+            data: shops
+        });
     } catch (error) {
+        console.error('Error fetching shops:', error);
         next(error);
     }
 };

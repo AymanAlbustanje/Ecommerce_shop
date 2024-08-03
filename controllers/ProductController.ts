@@ -7,7 +7,6 @@ export const createProduct = async (req: Request, res: Response, next: NextFunct
     try {
         const { name, price, shopId } = req.body;
 
-        // Inline validation
         if (!name || typeof name !== 'string') {
             throw new AppError('Product name is required and must be a string', 400, true);
         }
@@ -47,8 +46,8 @@ export const getAllProducts = async (req: Request, res: Response, next: NextFunc
 
 export const getProductById = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { productid } = req.params;
-        const product = await Product.findOne({ where: { id: parseInt(productid) } });
+        const { id } = req.params;
+        const product = await Product.findOne({ where: { id: parseInt(id) } });
         
         if (!product) {
             throw new AppError('Product not found', 404, true);
