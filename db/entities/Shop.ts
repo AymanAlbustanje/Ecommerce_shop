@@ -21,7 +21,7 @@ export class Shop extends BaseEntity {
   products!: Product[];
 
   @OneToOne(() => Hotline, (hotline) => hotline.shop)
-  @JoinColumn() // Remove `name` property if it was included
+  @JoinColumn()
   hotline!: Hotline;
 
   @BeforeInsert()
